@@ -1,0 +1,134 @@
+
+
+Lyhyt versio ilman tulosteita jne:
+#------------------------------------------------------------------
+a) DELETE FROM pet WHERE name = 'Puffball';
+b) UPDATE pet SET birth = '1998-08-31' WHERE name = 'Bowser';
+c) UPDATE pet SET death = '2000-09-15' WHERE name = 'Chirpy';
+d) SELECT * FROM pet WHERE birth BETWEEN '1990-01-01' AND '1999-12-31';
+e) SELECT * FROM pet WHERE sex = 'm' AND species = 'dog';
+f) SELECT name FROM pet WHERE sex = 'm' AND species = 'dog';
+g) SELECT name, owner FROM pet WHERE sex = 'm' AND species = 'dog';
+#------------------------------------------------------------------
+
+
+#------------------------------------------------------------------
+a) Poista Puffballin tiedot taulusta.
+
+SELECT * FROM pet;
+
++----------+--------+---------+------+------------+------------+
+| name     | owner  | species | sex  | birth      | death      |
++----------+--------+---------+------+------------+------------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
+| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
+| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |
+| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
+| Puffball | Diane  | hamster | f    | 1999-03-30 | NULL       |
++----------+--------+---------+------+------------+------------+
+
+DELETE FROM pet where name="puffball"
+
+SELECT * FROM pet;
++----------+--------+---------+------+------------+------------+
+| name     | owner  | species | sex  | birth      | death      |
++----------+--------+---------+------+------------+------------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
+| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
+| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |
+| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
++----------+--------+---------+------+------------+------------+
+
+
+#------------------------------------------------------------------
+b) Muuta Bowserin syntymäajaksi 31.8.1998
+
+UPDATE pet SET birth = '1998-08-31' WHERE name = 'Bowser';
+
+SELECT * FROM pet WHERE name="bowser";
++--------+-------+---------+------+------------+------------+
+| name   | owner | species | sex  | birth      | death      |
++--------+-------+---------+------+------------+------------+
+| Bowser | Diane | dog     | m    | 1998-08-31 | 1995-07-29 |
++--------+-------+---------+------+------------+------------+
+
+
+#------------------------------------------------------------------
+c) Chirpy on kuollut 15.9.2000. Lisää tämä tieto tauluun.
+
+UPDATE pet SET death = '2000-09-15' WHERE name = 'chirpy';
+
+SELECT * FROM pet WHERE name="chirpy";
++--------+-------+---------+------+------------+------------+
+| name   | owner | species | sex  | birth      | death      |
++--------+-------+---------+------+------------+------------+
+| Chirpy | Gwen  | bird    | f    | 1998-09-11 | 2000-09-15 |
++--------+-------+---------+------+------------+------------
+
+
+#------------------------------------------------------------------
+d) Tulosta kaikki lemmikit, jotka ovat syntyneet 1990-luvulla. (Tulosta kaikki tietueen tiedot)
+
+SELECT * FROM pet WHERE birth BETWEEN '1990-01-01' AND '1999-12-31';
+
++----------+--------+---------+------+------------+------------+
+| name     | owner  | species | sex  | birth      | death      |
++----------+--------+---------+------+------------+------------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
+| Bowser   | Diane  | dog     | m    | 1998-08-31 | 1995-07-29 |
+| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | 2000-09-15 |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
++----------+--------+---------+------+------------+------------
+
+
+#------------------------------------------------------------------
+e) Tulosta kaikki miespuoliset koirat. (Tulosta kaikki tietueen tiedot)
+
+SELECT * FROM pet WHERE sex='m' AND species='dog';
+
++--------+-------+---------+------+------------+------------+
+| name   | owner | species | sex  | birth      | death      |
++--------+-------+---------+------+------------+------------+
+| Fang   | Benny | dog     | m    | 1990-08-27 | NULL       |
+| Bowser | Diane | dog     | m    | 1998-08-31 | 1995-07-29 |
++--------+-------+---------+------+------------+------------+
+
+
+#------------------------------------------------------------------
+f) Tulosta ainoastaan kaikkien miespuolisten koirien nimet.
+
+SELECT name FROM pet WHERE sex='m' AND species='dog';
+
++--------+
+| name   |
++--------+
+| Fang   |
+| Bowser |
++--------+
+
+
+#------------------------------------------------------------------
+g) Tulosta kaikkien miespuolisten koirien nimi ja omistajan nimi.
+
+SELECT name, owner FROM pet WHERE sex='m' AND species='dog';
+
++--------+-------+
+| name   | owner |
++--------+-------+
+| Fang   | Benny |
+| Bowser | Diane |
++--------+-------+
+
+
+#------------------------------------------------------------------

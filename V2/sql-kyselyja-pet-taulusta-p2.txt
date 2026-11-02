@@ -1,0 +1,106 @@
+
+
+Lyhyt versio ilman tulosteita jne:
+#------------------------------------------------------------------
+
+a) SELECT DISTINCT owner FROM pet;
+b) SELECT name FROM pet ORDER BY name;
+c) SELECT * FROM pet WHERE death IS NULL;
+d) SELECT DISTINCT owner FROM pet WHERE owner LIKE "h%";
+e) SELECT DISTINCT name FROM pet WHERE name LIKE "%ff%";
+f) SELECT DISTINCT name FROM pet WHERE CHAR_LENGTH(name) = 4;
+
+#------------------------------------------------------------------
+
+
+#------------------------------------------------------------------
+a) Minkä nimisiä omistajia taulussa on ? Tulosta omistajan nimi vain kerran.
+
+SELECT DISTINCT owner FROM pet;
+
++--------+
+| owner  |
++--------+
+| Harold |
+| Gwen   |
+| Benny  |
+| Diane  |
++--------+
+
+
+#------------------------------------------------------------------
+b) Tulosta lemmikkien nimet aakkosjärjestyksessä.
+
+SELECT name FROM pet ORDER BY name;
+
++----------+
+| name     |
++----------+
+| Bowser   |
+| Buffy    |
+| Chirpy   |
+| Claws    |
+| Fang     |
+| Fluffy   |
+| Slim     |
+| Whistler |
++----------+
+
+
+#------------------------------------------------------------------
+c) Tulosta kaikki elossa olevat lemmikit.
+
+SELECT * FROM pet WHERE death IS NULL;
+
++----------+--------+---------+------+------------+-------+
+| name     | owner  | species | sex  | birth      | death |
++----------+--------+---------+------+------------+-------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL  |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL  |
+| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL  |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL  |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL  |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL  |
++----------+--------+---------+------+------------+-------+
+
+
+#------------------------------------------------------------------
+d) Tulosta kaikki omistajat, joiden nimi alkaa kirjaimella H.
+
+SELECT DISTINCT owner FROM pet WHERE owner LIKE "h%";
+
++--------+
+| owner  |
++--------+
+| Harold |
++--------+
+
+
+#------------------------------------------------------------------
+e) Tulosta lemmikkien nimet, joiden nimessä esiintyy kirjaimet ff.
+
+SELECT DISTINCT name FROM pet WHERE name LIKE "%ff%";
+
++--------+
+| name   |
++--------+
+| Fluffy |
+| Buffy  |
++--------+
+
+
+#------------------------------------------------------------------
+f) Tulosta lemmikkien nimet, joiden nimessä on 4 kirjainta.
+
+SELECT DISTINCT name FROM pet WHERE CHAR_LENGTH(name) = 4;
+
++------+
+| name |
++------+
+| Fang |
+| Slim |
++------+
+
+
+
+#-----------------------------------------------------------------
